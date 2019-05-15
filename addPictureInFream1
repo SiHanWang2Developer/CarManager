@@ -1,0 +1,43 @@
+# -*- coding: utf-8 -*-
+"""
+登录窗口02 可插入图片版
+"""
+from PIL import Image,ImageTk
+import tkinter as tk
+
+window = tk.Tk()
+window.title('山科进出入管理系统')
+window.geometry('1000x600')
+
+frm=tk.LabelFrame(window,padx=10, pady=10)
+frm.pack()
+frm_l = tk.LabelFrame(frm, text="来车处理处")
+frm_2 = tk.LabelFrame(frm)
+frm_l.pack(side='left',padx=20, pady=10,ipadx=40, ipady=200)
+frm_2.pack(side='right',padx=10, pady=10 )
+
+frm_3 = tk.LabelFrame(frm_2, text=" 车牌号识别 ")
+frm_4 = tk.LabelFrame(frm_2, text=" 识别结果 ")
+frm_5 = tk.LabelFrame(frm_2, text=" control")
+frm_3.pack(side='top',padx=10, pady=10)
+frm_4.pack(side='top',padx=10, pady=20)
+frm_5.pack(side='top',padx=10, pady=35,ipadx=20 , ipady=10)
+
+
+# 通过PIL打开图片,缩小以便显示
+img = Image.open('c:/e0.png')  
+smallimg=img.resize((512,512),Image.ANTIALIAS)
+# 通过PIL来生成PhotoImage对象，即可正常加载
+photo = ImageTk.PhotoImage(smallimg)
+
+tk.Label(frm_l,image=photo,height = 200,width = 300).pack(side='left' ,padx=10, pady=10, ipadx=150 , ipady=150 )
+tk.Label(frm_3, text='车牌号').pack(side='top' ,padx=10, pady=10,ipadx=50 , ipady=5)
+ 
+tk.Button(frm_4, text='已注册车辆请直行/未注册车辆请点击注册？').pack(side='top' ,padx=10, pady=10,ipadx=50 , ipady=5)
+ 
+ 
+tk.Button(frm_5, text='up',width=10).pack(side='left' )
+tk.Button(frm_5, text='down',width=10).pack(side='left' )
+
+
+window.mainloop()
